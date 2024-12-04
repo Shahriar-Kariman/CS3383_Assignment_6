@@ -30,6 +30,9 @@ class queen:
 class board_state:
   def __init__(self, queens):
     self.queens = queens
+    # The huristic for a board state/node
+    # can be calculated from the start
+    self.huristic = self.calc_huristic()
   # how many queens are already placed
   def calc_g(self):
     return len(self.queens)
@@ -45,13 +48,22 @@ class board_state:
     return next_avalible_squares
   def calc_huristic(self):
     return self.calc_g() + self.calc_h()
+  # duplicate array of queens
+  def dup_queens(self):
+    pass
 
 def 8_queens():
   # lets just assume I have a priority queue class
-  queue = new PriorityQueue()
-  queen_array = []
-  for column in range(8):
-    queen_array.append({'column':column, 'row': 1})
+  queue = PriorityQueue()
+  # at the start I can put the first queen
+  # in 8 different squares that is 8 different
+  # board states that will be ordered based
+  # on the huristic in the queue
+  for col in range(8):
+    queue.add(board_state([queen(col, 0)]))
+  while not queue.is_empty():
+    state = queue.pop()
+    q_array = state.dup_queens()
 ```
 
 ## Question 2 - (0-1) Knapsack Problem
