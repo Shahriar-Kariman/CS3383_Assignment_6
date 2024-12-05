@@ -37,20 +37,23 @@ class board_state:
   def calc_g(self):
     return len(self.queens)
   # how many squares are avalible in
-  # the next row for the next queen
+  # the next rows for the next queens
   def calc_h(self):
-    next_avalible_squares = 8
-    for col in range(8):
-      for q in self.queens:
-        if q.can_go(col,len(self.queens)):
-          next_avalible_squares -= 1
-          break
+    next_avalible_squares = 0
+    for r in range(len(self.queens),8):
+      for col in range(8):
+        for q in self.queens:
+          if not q.can_go(col,r):
+            next_avalible_squares += 1
+            break
     return next_avalible_squares
   def calc_huristic(self):
     return self.calc_g() + self.calc_h()
   # duplicate array of queens
+  # that way modifying the array wont change the
+  # other board states/nodes
   def dup_queens(self):
-    pass
+    return [queen(q.column, q.row) for q in self.queens]
 
 def 8_queens():
   # lets just assume I have a priority queue class
@@ -63,7 +66,22 @@ def 8_queens():
     queue.add(board_state([queen(col, 0)]))
   while not queue.is_empty():
     state = queue.pop()
-    q_array = state.dup_queens()
+    if len(state.queens)==8:
+      return state
+    for col in range(8):
+      is_avalible = True
+      for q in state.queens:
+        if q.can_go(col, len(state.queens)):
+          is_avalible = False
+          break
+      if is_avalible:
+        # Make a new board state for the case
+        # where we place a queen on that square
+        # remember board_state.huristic is created
+        # upon initialization and queue is in order of board_state.huristic
+        new_queens = state.dup_queens()
+        new_queens.append(queen(col, len(state.queens)))
+        queue.add(board_state(new_queens))
 ```
 
 ## Question 2 - (0-1) Knapsack Problem
