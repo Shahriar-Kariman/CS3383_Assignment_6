@@ -132,3 +132,26 @@ def calc_val(obj):
 I figured using sorting would help find the best swap faster but then I dont see why we would even need to do this a greedy algorithm would work better.
 
 ## Question 3 - Traveling Salesman Problem
+
+```py
+def local_search_TSP(cities):
+  current_tour = random_tour(cities)
+  current_distance = calculate_distance(current_tour)
+  while True:
+    best_improvement = 0
+    best_swap = NULL
+    for i in range(len(current_tour)):
+      for j in range(i+1, len(currnet_tour)):
+        new_tour = swap_cities(current_tour, i, j)
+        new_distance = calcualte_distance(new_tour)
+        improvement = current_distance - new_distance
+        if improvement > best_improvement:
+          best_improvement = improvement
+          best_swap = [i, j]
+    if best_improvement > 0:
+      current_tour = swap_cities(current_tour, best_swap[0], best_swap[1])
+      current_distance = current_distance - best_improvement
+    else:
+      break
+  return {"tour":current_tour, "distance": current_distance}
+```
