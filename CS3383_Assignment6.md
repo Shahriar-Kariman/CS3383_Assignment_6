@@ -6,9 +6,9 @@
 
 ## Question 1 - 8 Queen Problem
 
-So I know best first search is through having a priority queue and keep expanding the node with the most promise on each turn. And you find the most promising node through a huristic like $f_n = g_n + h_n$.
+So I know best first search is through having a priority queue and keep expanding the node with the most promise on each turn. And you find the most promising node through a heuristic like $f_n = g_n + h_n$.
 
-Here I can define the number of queens I have on the board for a particualr node as $g_n$ and the number of possible positions the next queen could go on on the next row.
+Here I can define the number of queens I have on the board for a particular node as $g_n$ and the number of possible positions the next queen could go on on the next row.
 
 ```py
 # for the purpouse of this question lets
@@ -90,7 +90,7 @@ def 8_queens():
 
 Wouldn't this be similar to the greedy proof thing with the swapping?
 
-Also I choose to have actual item objects in an array as opposed to keeping track of indexs it just seems more logical.
+Also I choose to have actual item objects in an array as opposed to keeping track of indexes it just seems more logical.
 
 ```py
 def hillClimbin_knapsack(items, limit):
@@ -129,9 +129,9 @@ def calc_val(obj):
   return obj["benefit"]/["weight"]
 ```
 
-I figured using sorting would help find the best swap faster but then I dont see why we would even need to do this a greedy algorithm would work better.
+I figured using sorting would help find the best swap faster but then I don't see why we would even need to do this a greedy algorithm would work better.
 
-## Question 3 - Traveling Salesman Problem
+## Question 3 - Travelling Salesman Problem
 
 ```py
 def local_search_TSP(cities):
