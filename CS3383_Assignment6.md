@@ -8,7 +8,7 @@
 
 So I know best first search is through having a priority queue and keep expanding the node with the most promise on each turn. And you find the most promising node through a heuristic like $f_n = g_n + h_n$.
 
-Here I can define the number of queens I have on the board for a particular node as $g_n$ and the number of possible positions the next queen could go on on the next row.
+Here I can define the number of queens I have on the board for a particular node as $g_n$ and the number of possible positions the next queen could go on the next row.
 
 ```py
 # for the purpouse of this question lets
