@@ -84,6 +84,51 @@ def 8_queens():
         queue.add(board_state(new_queens))
 ```
 
+**Personal Note:** How is this question only 15 marks this was a really long question.
+
 ## Question 2 - (0-1) Knapsack Problem
+
+Wouldn't this be similar to the greedy proof thing with the swapping?
+
+Also I choose to have actual item objects in an array as opposed to keeping track of indexs it just seems more logical.
+
+```py
+def hillClimbin_knapsack(items, limit):
+  # Lets assume items is an array of objects
+  # containing attributes name, benefit and weight
+  current_weight = 0
+  knapsack = []
+  remaining_items = []
+  while len(items)!=0:
+    obj = items[random.randint(0,len(items))]
+    items.remove(obj)
+    if obj["weight"]<(limit-current_weight):
+      knapsack.append(obj)
+      current_weight += obj["weight"]
+    else:
+      remaining_items.append(obj)
+  # sort the remaining items in ascending order of value
+  remaining_items = merge_sort(remaining_items)
+  # get the highest value remaining item
+  item = remaining_items.pop()
+  # sort the knapsack item in ascending order of value
+  knapsack = merge_sort(knapsack)
+  for i in range(len(knapsack)):
+    if calc_val(item)>calc_val(knapsack[i]) and (current_weight-knapsack[i]["weight"]+item["weight"])<limit:
+      # swap the next least valuable item in the
+      # knasack with the most valuable remaining item
+      # if the swap does not go over the limit
+      current_weight += item["weight"]-knapsack[i]["weight"]
+      knapsack[i] = item
+      if len(remaining_items)==0:
+        return knapsack
+      # onto the next highest value item
+      item = remaining_items.pop()
+
+def calc_val(obj):
+  return obj["benefit"]/["weight"]
+```
+
+I figured using sorting would help find the best swap faster but then I dont see why we would even need to do this a greedy algorithm would work better.
 
 ## Question 3 - Traveling Salesman Problem
